@@ -15,12 +15,10 @@ from rest_framework import status
 def search_city(request):
 	"""
 	request contains q param with one or more characters
-	returns: list of matched city names limit to 50 results
+	returns: list of matched city names limited to 50 results
 	"""
 	try:
-		search_query = request.GET.get('q', '')
-		# print  "search_query"
-		# print search_query
+		search_query = request.GET.get('q', '').strip()
 		if not search_query:
 			raise CustomApiException("Please provide atleast one character to search city by name", status.HTTP_400_BAD_REQUEST)
 
@@ -33,6 +31,5 @@ def search_city(request):
 		HttpResponse.status_code = err.status_code
 		return JsonResponse({'status_code': err.status_code, 'message': err.detail})
 	except Exception, e:
-		print e
 		HttpResponse.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
 		return JsonResponse({'status_code': status.HTTP_500_INTERNAL_SERVER_ERROR, 'message': str(e)})
