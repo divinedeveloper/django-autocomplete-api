@@ -1,0 +1,1 @@
+web: gunicorn search_city.wsgi —-log-file -

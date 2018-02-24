@@ -25,7 +25,7 @@ SECRET_KEY = 'zv)#4)t9&7yns!@+4ojg432o6n-o7xh#s+%)r5y2+u26%fvdai'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'pure-earth-30986.herokuapp.com']
 
 
 # Application definition
@@ -102,8 +102,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 ########## REST FRAMEWORK CONFIGURATION
 REST_FRAMEWORK = {
